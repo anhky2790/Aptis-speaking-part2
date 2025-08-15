@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aptis ESOL Speaking Part 2 Practice</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin:0; padding:20px; background:#f4f4f4; display:flex; flex-direction:column; align-items:center;}
+    #clock {position:fixed; top:10px; right:10px; font-size:18px; font-weight:bold; background:#fff; padding:5px 10px; border:1px solid #ccc; border-radius:5px;}
+    #picture-selector {margin:0 0 20px; text-align:center;}
+    #picture-selector label {margin-right:10px; font-size:18px;}
+    #picture-selector select {padding:10px; font-size:16px; min-width:320px;}
+    #main-content {text-align:center; max-width:900px; width:100%;}
+    #picture {max-width:600px; height:auto; border:2px solid #ccc; margin:12px auto 20px; display:block;}
+    .question {margin:20px auto; border:1px solid #ddd; padding:15px; border-radius:8px; background:#fff; text-align:left; max-width:900px;}
+    .question h3 {margin:0 0 12px; font-size:22px;}
+    .controls {display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin:12px 0;}
+    .timer {font-size:20px; font-weight:bold; color:#d11; margin-left:auto;}
+    button {padding:10px 16px; font-size:15px; cursor:pointer; background:#f7f7f7; border:1px solid #bbb; border-radius:6px;}
+    button:hover {background:#efefef;}
+    .recordings-section {margin-top:10px;}
+    audio {margin:10px 0; display:block; width:100%;}
+    .muted {opacity:0.6; pointer-events:none;}
+  </style>
+</head>
+<body>
+  <div id="clock">00:00:00</div>
+  <h1>Aptis ESOL Speaking Part 2 Practice: Describe the Picture</h1>
+
+  <div id="picture-selector">
+    <label for="picture-select">Choose a Picture:</label>
+    <select id="picture-select">
+      <option value="">Select...</option>
+      <!-- options sẽ được nạp từ questions.json -->
+    </select>
+  </div>
+
+  <div id="main-content" style="display:none;">
+    <img id="picture" src="" alt="Selected Picture"/>
+    <div id="questions"></div>
+  </div>
+
+  <script>
+    // ---------------- Clock ----------------
+    function updateClock() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2,'0');
+      const m = String(now.getMinutes()).padStart(2,'0');
+      const s = String(now.getSeconds()).padStart(2,'0');
+      document.getElementById('clock').textContent = h + ":" + m + ":" + s;
+    }
+    setInterval(updateClock, 1000); updateClock();
+
+    // ---------------- Load JSON ----------------
+    let data = {};
+    const pictureSelect = document.getElementById('picture-select');
+    const mainContent = document.getElementById('main-content');
+    const pictureImg = document.getElementById('picture');
+    const questionsDiv = document.getElementById('questions');
+
+    fetch('questions.json')
+      .then(r => r.json())
+      .then(json => {
+        data = json;
+        // populate select
+        Object.keys(data).forEach(url => {
+          const opt = document.createElement('option');
+          opt.value = url;
+          opt.textContent = data[url].title || url;
+          pictureSelect.appendChild(opt);
+        });
+      })
+      .catch(err => {
+        console.error('Cannot load questions.json', err);
+        alert('Không thể tải questions.json. Hãy chạy qua server (Thonny/Live Server).');
+      });
+
+    pictureSelect.addEventListener('change', e => {
+      const selectedUrl = e.target.value;
+      if (!selectedUrl) return;
+
+      pictureImg.src = selectedUrl;
+      questionsDiv.innerHTML = '';
+
+      const picData = data[selectedUrl];
+      if (!picData) {
+        const warn = document.createElement('div');
+        warn.textContent = 'Chưa có câu hỏi cho ảnh này trong JSON.';
+        warn.style.background = '#fff3cd';
+        warn.style.border = '1px solid #ffeeba';
+        warn.style.padding = '10px';
+        warn.style.borderRadius = '6px';
+        questionsDiv.appendChild(warn);
+        mainContent.style.display = 'block';
+        return;
+      }
+
+      // build questions UI (no template literals inside innerHTML)
+      picData.questions.forEach((q, index) => {
+        const questionDiv = document.createElement('div');
+        questionDiv.className = 'question';
+
+        const h3 = document.createElement('h3');
+        h3.textContent = 'Question ' + (index + 1) + ': ' + q;
+        questionDiv.appendChild(h3);
+
+        const controls1 = document.createElement('div');
+        controls1.className = 'controls';
+
+        const btnPlayQ = document.createElement('button');
+        btnPlayQ.textContent = 'Play Question';
+        btnPlayQ.addEventListener('click', () => playQuestion(index));
+        controls1.appendChild(btnPlayQ);
+
+        const btnStart = document.createElement('button');
+        btnStart.id = 'start-btn-' + index;
+        btnStart.textContent = 'Start Recording';
+        btnStart.addEventListener('click', () => startRecording(index));
+        controls1.appendChild(btnStart);
+
+        const btnFinish = document.createElement('button');
+        btnFinish.id = 'finish-btn-' + index;
+        btnFinish.textContent = 'Finish Recording';
+        btnFinish.style.display = 'none';
+        btnFinish.addEventListener('click', () => finishRecording(index));
+        controls1.appendChild(btnFinish);
+
+        const timer = document.createElement('div');
+        timer.className = 'timer';
+        timer.id = 'timer-' + index;
+        timer.textContent = '45';
+        controls1.appendChild(timer);
+
+        questionDiv.appendChild(controls1);
+
+        const controls2 = document.createElement('div');
+        controls2.className = 'controls';
+
+        const btnShowS = document.createElement('button');
+        btnShowS.textContent = 'Show Suggestion';
+        btnShowS.addEventListener('click', () => showSuggestion(index));
+        controls2.appendChild(btnShowS);
+
+        const btnPlayS = document.createElement('button');
+        btnPlayS.textContent = 'Play Suggestion Audio';
+        btnPlayS.addEventListener('click', () => playSuggestion(index));
+        controls2.appendChild(btnPlayS);
+
+        questionDiv.appendChild(controls2);
+
+        const pSug = document.createElement('p');
+        pSug.id = 'suggestion-text-' + index;
+        pSug.style.display = 'none';
+        questionDiv.appendChild(pSug);
+
+        const recSec = document.createElement('div');
+        recSec.className = 'recordings-section';
+        recSec.id = 'recordings-' + index;
+        const h4 = document.createElement('h4');
+        h4.textContent = 'Your Recordings for this Question:';
+        recSec.appendChild(h4);
+        questionDiv.appendChild(recSec);
+
+        questionsDiv.appendChild(questionDiv);
+      });
+
+      mainContent.style.display = 'block';
+    });
+
+    // ---------------- Recording logic ----------------
+    const timers = {};
+    const activeRecorders = {}; // index -> MediaRecorder
+    const activeStreams = {};   // index -> MediaStream
+
+    function getSupportedMimeType() {
+      const mimeTypes = [
+        'audio/webm;codecs=opus',
+        'audio/webm',
+        'audio/ogg;codecs=opus',
+        'audio/ogg',
+        'audio/mp4'
+      ];
+      for (const t of mimeTypes) {
+        if (window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) {
+          return t;
+        }
+      }
+      return '';
+    }
+
+    async function startRecording(index) {
+      if (activeRecorders[index]) return; // already recording this question
+      toggleAllStartButtons(true);
+
+      const timerEl = document.getElementById('timer-' + index);
+      timerEl.textContent = '45';
+      let timeLeft = 45;
+
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const mimeType = getSupportedMimeType();
+      const options = mimeType ? { mimeType } : {};
+      const mediaRecorder = new MediaRecorder(stream, options);
+      activeRecorders[index] = mediaRecorder;
+      activeStreams[index] = stream;
+
+      const chunks = [];
+      mediaRecorder.ondataavailable = (e) => { if (e.data && e.data.size) chunks.push(e.data); };
+
+      mediaRecorder.onstop = () => {
+        const blobType = mimeType || 'audio/webm';
+        const blob = new Blob(chunks, { type: blobType });
+        const url = URL.createObjectURL(blob);
+        addRecording(index, url);
+
+        if (timers[index]) clearInterval(timers[index]);
+        cleanupRecorder(index);
+
+        document.getElementById('start-btn-' + index).style.display = 'inline-block';
+        document.getElementById('finish-btn-' + index).style.display = 'none';
+        toggleAllStartButtons(false);
+      };
+
+      document.getElementById('start-btn-' + index).style.display = 'none';
+      document.getElementById('finish-btn-' + index).style.display = 'inline-block';
+
+      timers[index] = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = String(timeLeft);
+        if (timeLeft <= 0) {
+          clearInterval(timers[index]);
+          if (mediaRecorder.state !== 'inactive') mediaRecorder.stop();
+        }
+      }, 1000);
+
+      mediaRecorder.start();
+    }
+
+    function finishRecording(index) {
+      const rec = activeRecorders[index];
+      if (!rec) return;
+      if (timers[index]) clearInterval(timers[index]);
+      if (rec.state !== 'inactive') rec.stop();
+    }
+
+    function cleanupRecorder(index) {
+      const str = activeStreams[index];
+      if (str) str.getTracks().forEach(t => t.stop());
+      delete activeRecorders[index];
+      delete activeStreams[index];
+    }
+
+    function toggleAllStartButtons(disabled) {
+      const buttons = document.querySelectorAll('[id^="start-btn-"]');
+      buttons.forEach(b => {
+        b.classList.toggle('muted', disabled);
+        if (disabled) b.setAttribute('disabled','true'); else b.removeAttribute('disabled');
+      });
+    }
+
+    function addRecording(index, url) {
+      const recordingsDiv = document.getElementById('recordings-' + index);
+      const audio = document.createElement('audio');
+      audio.src = url;
+      audio.controls = true;
+      recordingsDiv.appendChild(audio);
+    }
+
+    // ---------------- Suggestions & TTS ----------------
+    function showSuggestion(index) {
+      const selectedUrl = pictureSelect.value;
+      const suggestion = data[selectedUrl]?.suggestions?.[index];
+      const textEl = document.getElementById('suggestion-text-' + index);
+      textEl.textContent = suggestion || 'No suggestion available.';
+      textEl.style.display = 'block';
+    }
+
+    function playSuggestion(index) {
+      const selectedUrl = pictureSelect.value;
+      const suggestion = data[selectedUrl]?.suggestions?.[index] || 'No suggestion available.';
+      const u = new SpeechSynthesisUtterance(suggestion);
+      u.lang = 'en-US';
+      speechSynthesis.speak(u);
+    }
+
+    function playQuestion(index) {
+      const selectedUrl = pictureSelect.value;
+      const question = data[selectedUrl]?.questions?.[index] || 'Question not found.';
+      const u = new SpeechSynthesisUtterance(question);
+      u.lang = 'en-US';
+      speechSynthesis.speak(u);
+    }
+  </script>
+</body>
+</html>

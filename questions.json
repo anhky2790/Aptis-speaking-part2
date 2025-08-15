@@ -1,0 +1,54 @@
+{
+  "https://via.placeholder.com/600x400?text=Picture+1+-+School+Library": {
+    "title": "Picture 1: School Library",
+    "questions": [
+      "Describe the picture. What are the students doing in the library?",
+      "Tell me about a time when you studied in a library.",
+      "Do you think libraries are still important in the digital age? Why or why not?"
+    ],
+    "suggestions": [
+      "In the picture, students are reading books and working on computers in a quiet library. Some are sitting at tables, taking notes.",
+      "I once studied for my exams in the city library. It was quiet and comfortable, and I could focus very well.",
+      "Yes, libraries are important because they provide a peaceful study space, access to books, and free internet for everyone."
+    ]
+  },
+  "https://via.placeholder.com/600x400?text=Picture+2+-+Supermarket": {
+    "title": "Picture 2: Supermarket",
+    "questions": [
+      "Describe the picture. What can you see in the supermarket?",
+      "Tell me about a time when you went shopping for groceries.",
+      "Do you prefer shopping in a supermarket or a small store? Why?"
+    ],
+    "suggestions": [
+      "In the picture, there are aisles full of products, people pushing trolleys, and a cashier counter at the front.",
+      "Last weekend, I went to the supermarket with my mother. We bought fruits, vegetables, and some snacks.",
+      "I prefer supermarkets because they have a wide variety of products, good prices, and everything is in one place."
+    ]
+  },
+  "https://via.placeholder.com/600x400?text=Picture+3+-+Mountain+Hiking": {
+    "title": "Picture 3: Mountain Hiking",
+    "questions": [
+      "Describe the picture. What are the hikers doing?",
+      "Tell me about a time when you went hiking or visited the mountains.",
+      "What are the benefits of hiking for health and well-being?"
+    ],
+    "suggestions": [
+      "In the picture, hikers are walking on a mountain trail. They are carrying backpacks and wearing hiking boots.",
+      "Two years ago, I went hiking with my friends in a national park. The view from the top was amazing.",
+      "Hiking improves physical health, reduces stress, and allows people to connect with nature."
+    ]
+  },
+  "beach.png": {
+    "title": "Picture 4: Beach Holiday",
+    "questions": [
+      "Describe the picture. What are the people doing on the beach?",
+      "Tell me about a time when you went to the beach.",
+      "Do you prefer holidays at the beach or in the mountains? Why?"
+    ],
+    "suggestions": [
+      "In the picture, people are swimming, playing volleyball, and sunbathing on the beach.",
+      "Last summer, I went to the beach with my family. We swam in the sea and built sandcastles.",
+      "I prefer the beach because I enjoy swimming and relaxing by the sea."
+    ]
+  }
+}
