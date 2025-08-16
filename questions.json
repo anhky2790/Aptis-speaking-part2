@@ -1,54 +1,58 @@
 {
-  "https://via.placeholder.com/600x400?text=Picture+1+-+School+Library": {
-    "title": "Picture 1: School Library",
+ 
+  "image0.png": {
+    "title": "Picture 1: SHOPPING - MUA SẮM ",
     "questions": [
-      "Describe the picture. What are the students doing in the library?",
-      "Tell me about a time when you studied in a library.",
-      "Do you think libraries are still important in the digital age? Why or why not?"
+      "Describe the picture?",
+      "Tell me about a time when you went shopping?",
+      "Why do many people enjoy shopping with friends?"
     ],
     "suggestions": [
-      "In the picture, students are reading books and working on computers in a quiet library. Some are sitting at tables, taking notes.",
-      "I once studied for my exams in the city library. It was quiet and comfortable, and I could focus very well.",
-      "Yes, libraries are important because they provide a peaceful study space, access to books, and free internet for everyone."
+      "The picture depicts a young couple standing before a shop window, deeply engaged in a conversation about clothing. The woman, with her long, blonde hair cascading down to her shoulders, is elegantly dressed in a pink vest while carrying several shopping bags. It's evident they've just completed a shopping excursion.",
+      "It was yesterday. For me, shopping is a way to find something new, whether it’s clothes, gadgets, or groceries. It's often a mix of excitement as you discover great deals and the occasional decision fatigue as you try to choose between options. Whether it's an exciting shopping spree or just picking up a few essentials, it’s always nice to find what you're looking for.",
+      "Shopping with friends is fun for several reasons! First, it’s a social activity that lets you bond over picking out clothes, trying on new things, and giving each other advice. It’s like a mini adventure where you can laugh, joke, and share opinions, making the whole experience more enjoyable. Plus, friends help each other make decisions, whether it’s for an outfit, a gift, or something for the home. Shopping together can turn into a fun day out, filled with conversation and laughter, making it less about the shopping and more about enjoying the time spent together."
     ]
   },
-  "https://via.placeholder.com/600x400?text=Picture+2+-+Supermarket": {
-    "title": "Picture 2: Supermarket",
+  "image1.png": 
+  {
+    "title": "Picture 2: Eating out with friends",
     "questions": [
-      "Describe the picture. What can you see in the supermarket?",
-      "Tell me about a time when you went shopping for groceries.",
-      "Do you prefer shopping in a supermarket or a small store? Why?"
+      "Describe the picture?",
+      "Why do people like eating out with friends?",
+      "Please talk about the last time you ate with friends?"
     ],
     "suggestions": [
-      "In the picture, there are aisles full of products, people pushing trolleys, and a cashier counter at the front.",
-      "Last weekend, I went to the supermarket with my mother. We bought fruits, vegetables, and some snacks.",
-      "I prefer supermarkets because they have a wide variety of products, good prices, and everything is in one place."
+      "In the photo, I can see a group of friends sitting at the same table and eating in a restaurant. It's a very beautiful place with lots of trees around. There are 2 men and 2 women, they are wearing different colored shirts. They are enjoying their food while smiling and talking to each other, it looks like they are talking about something very funny. Looking at the background of the picture, I can tell that this is a fast food restaurant or a cake restaurant. They all look happy and full of energy.",
+      "People are keen on eating out because it is one of the great ways to spend the time and it is fun and enjoyable activity. Besides, people like to share food with family and friends. Actually, eating out has become one of the most popular ways of recreation. It is a time to be out, see people and meet people. You can enjoy the delicious food that you usually do not cook at home while smiling and talking with your friends about some fun stories. I think that’s why people are into eating out.",
+      "The last time I ate with my friends was last night. Me and my group of friends went to a Chinese restaurant in the city center. The purpose we went to eat was to celebrate a friend of mine who passed his English test that morning. We enjoyed our meal a lot while smiling and talking about the beautiful memories of our life. The restaurant had a homely atmosphere and soft music that made me comfortable and helped me let my hair down after a working day."
     ]
   },
-  "https://via.placeholder.com/600x400?text=Picture+3+-+Mountain+Hiking": {
-    "title": "Picture 3: Mountain Hiking",
+  "image2.png": 
+  {
+    "title": "Picture 3: Cô gái ngồi trên tàu",
     "questions": [
-      "Describe the picture. What are the hikers doing?",
-      "Tell me about a time when you went hiking or visited the mountains.",
-      "What are the benefits of hiking for health and well-being?"
+      "Describe the picture?",
+      "When was the last time you went on vacation with someone else?",
+      "What are the benefits of hanging out with other people?"
     ],
     "suggestions": [
-      "In the picture, hikers are walking on a mountain trail. They are carrying backpacks and wearing hiking boots.",
-      "Two years ago, I went hiking with my friends in a national park. The view from the top was amazing.",
-      "Hiking improves physical health, reduces stress, and allows people to connect with nature."
+      "The picture depicts some people sitting in a train. But I think the main character here is the girl with white T-shirt. She is also wearing white headphones, so I think she is enjoying her favorite music. Look at her, I guess she is about 13 or 14 years old as she looks so young. I bet she is on the way to visit some interesting places. This picture reminds me of myself. When I was a teenager, sometimes I also traveled somewhere on my own like that. It was fantastic.",
+      "This is an interesting question. Now I'm going to talk about the last time I had a vacation with someone else. As far as I remembered, it was 3 months ago, I had a trip to Dalat with my boyfriend. That trip lasted 3 days. When we arrived there, we visited a number of well- known destinations such as Love Valley, Night market and so on. We also tried lots of scrumptious dishes and some special drinks. To be honest, it was one of most fascinating vacations that I have ever had in my life. If I have a chance, I would like to come back there one more time.",
+      "To be honest, I do believe that hanging out with people will bring us numerous advantages. First, it gives you social support. Being around friends and loved ones provides a sense of belonging and support. It creates a network of individuals who can offer encouragement, advice, and assistance during difficult times. Second, going out and having fun with our friends also enhance self-esteem. Spending time with supportive friends can boost self-esteem and self- worth. Positive feedback and validation from others can help individuals feel valued and confident in themselves."
     ]
   },
-  "beach.png": {
-    "title": "Picture 4: Beach Holiday",
+  "image3.png": 
+  {
+    "title": "Picture 4: Nhóm bạn chơi đá bóng",
     "questions": [
-      "Describe the picture. What are the people doing on the beach?",
-      "Tell me about a time when you went to the beach.",
-      "Do you prefer holidays at the beach or in the mountains? Why?"
+      "Describe the picture?",
+      "Tell me how you and your family spend free time together?",
+      "Do you think today’s parents should spend more quality time with their children and why?"
     ],
     "suggestions": [
-      "In the picture, people are swimming, playing volleyball, and sunbathing on the beach.",
-      "Last summer, I went to the beach with my family. We swam in the sea and built sandcastles.",
-      "I prefer the beach because I enjoy swimming and relaxing by the sea."
+      "In the picture, three boys are playing soccer on a sunlit morning, surrounded by lush green grass. Two of them are wearing matching purple jerseys, while the third boy dons a blue jersey with curly black hair, skillfully dribbling the ball. I can easily observe the finesse and composure of the boy in blue as he navigates past the two boys in purple. It appears that the boy in blue is likely to score multiple goals in this match.",
+      "Usually in the weekend we go to my family’s house. We eat lunch together. Sometimes my mother cooks lunch. Sometimes my father brings food from a restaurant. After finishing lunch the children play in the garden and me and my family drink tea and eat sweets. I love weekends with my family.",
+      "No. I think parents spend enough time with their children. Parents need a break, they need to relax after working. Parents get a headache. It is also true that children need more time to play outside. Playing is good for children. Playing with other children is good for their social skills."
     ]
   }
 }
