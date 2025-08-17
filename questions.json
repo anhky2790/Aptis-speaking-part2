@@ -1,6 +1,14 @@
 {
  
-  "image0.png": {
+  "khongbiet.png": {
+    "title": "Picture 1: CHƯA BIẾT TRẢ LỜI THẾ NÀO ",
+    "questions": [
+      "Describe the picture?"
+         ],
+    "suggestions": [
+      "Looking at the picture, I can see many people. They seem around 30 years old. They are wearing casual clothes. The picture looks very clear/beautiful. I think they are doing something meaningful. Thank you for listening."
+	  ]
+  },"image0.png": {
     "title": "Picture 1: SHOPPING - MUA SẮM ",
     "questions": [
       "Describe the picture?",
